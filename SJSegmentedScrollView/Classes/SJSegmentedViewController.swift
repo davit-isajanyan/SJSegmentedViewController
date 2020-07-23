@@ -358,7 +358,7 @@ import UIKit
     /**
      * Set the default values for the segmented scroll view.
      */
-    func setDefaultValuesToSegmentedScrollView() {
+    open func setDefaultValuesToSegmentedScrollView() {
         
         segmentedScrollView.selectedSegmentViewColor    = selectedSegmentViewColor
         segmentedScrollView.selectedSegmentViewHeight   = selectedSegmentViewHeight
