@@ -117,13 +117,6 @@ class SJSegmentView: UIScrollView {
                                                             object: nil)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        let changeOffset = self.contentSize.width / contentSize.width
-        let constant = (self.contentOffset.x + contentSize.width * 0.5) / changeOffset
-        xPosConstraints?.constant = constant
-    }
-    
     @objc func didChangeSegmentIndex(_ notification: Notification) {
         
         //deselect previous buttons
@@ -384,5 +377,14 @@ class SJSegmentView: UIScrollView {
             
             layoutIfNeeded()
         }
+    }
+    
+    func updateSelectedViewConstraint() {
+        if self.segments.count > 0 {
+            let count = CGFloat(self.segments.count)
+            let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5)) / count
+            xPosConstraints!.constant = constant
+        }
+        
     }
 }

@@ -488,4 +488,8 @@ import UIKit
                                  segment: segment,
                                  index: 0)
     }
+    
+    open func updateSelectedViewConstraint() {
+        self.segmentedScrollView.updateSelectedViewConstraint()
+    }
 }

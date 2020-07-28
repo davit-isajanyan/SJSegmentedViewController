@@ -413,4 +413,8 @@ class SJSegmentedScrollView: UIScrollView {
         scrollView.contentOffset = point
         observing = true
     }
+    
+    func updateSelectedViewConstraint() {
+        self.segmentView?.updateSelectedViewConstraint()
+    }
 }
