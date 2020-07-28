@@ -383,7 +383,7 @@ class SJSegmentView: UIScrollView {
         if self.segments.count > 0 {
             let count = CGFloat(self.segments.count)
             let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
-            xPosConstraints!.constant = constant
+            selectedSegmentView?.frame.origin.x = constant
         }
     }
 }
