@@ -117,6 +117,12 @@ class SJSegmentView: UIScrollView {
                                                             object: nil)
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let changeOffset = self.contentSize.width / contentSize.width
+        selectedSegmentView?.frame.origin.x = (self.contentOffset.x + contentSize.width * 0.5) / changeOffset
+    }
+    
     @objc func didChangeSegmentIndex(_ notification: Notification) {
         
         //deselect previous buttons
