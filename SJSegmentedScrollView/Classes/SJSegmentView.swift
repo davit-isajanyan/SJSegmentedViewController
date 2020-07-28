@@ -246,9 +246,9 @@ class SJSegmentView: UIScrollView {
         segmentContentView!.addConstraint(xPosConstraints!)
         
         let segment = segments.first
-        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(==segment)]",
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(width)]",
                                                                                    options: [],
-                                                                                   metrics: nil,
+                                                                                   metrics: ["width": selectedSegmentViewHeight!],
                                                                                    views: ["view": segmentView,
                                                                                     "segment": segment!])
         segmentContentView!.addConstraints(horizontalConstraints)
@@ -329,7 +329,7 @@ class SJSegmentView: UIScrollView {
                     let value = (scrollView?.contentOffset.x)! / changeOffset
                     
                     if !value.isNaN {
-                        selectedSegmentView?.frame.origin.x = (scrollView?.contentOffset.x)! / changeOffset
+                        selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + contentSize.width * 0.5) / changeOffset
                     }
                     
                     //update segment offset x position
@@ -340,6 +340,18 @@ class SJSegmentView: UIScrollView {
                 }
             }
         }
+    }
+    
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        self.selectedSegmentView?.layer.masksToBounds = true
+        self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.selectedSegmentView?.layer.masksToBounds = true
+        self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
     }
     
     func didChangeParentViewFrame(_ frame: CGRect) {
