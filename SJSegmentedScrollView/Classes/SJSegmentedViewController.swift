@@ -375,6 +375,14 @@ import UIKit
         segmentedScrollView.sjDisableScrollOnContentView = disableScrollOnContentView
     }
     
+    open func updateSegmentTitles() {
+        for (index, vc) in self.segmentControllers.enumerated() {
+            if index <= self.segments.count {
+                self.segments[index].setTitle(vc.title ?? "")
+            }
+        }
+    }
+    
     /**
      * Private method for adding the segmented scroll view.
      */
