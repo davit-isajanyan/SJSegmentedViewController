@@ -386,4 +386,10 @@ class SJSegmentView: UIScrollView {
             selectedSegmentView?.frame.origin.x = constant
         }
     }
+    
+    func enableSegmentButton(enable: Bool) {
+        for segment in segments {
+            segment.enableButton(enable: enable)
+        }
+    }
 }

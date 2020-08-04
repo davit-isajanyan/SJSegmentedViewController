@@ -98,6 +98,10 @@ open class SJSegmentTab: UIView {
 
 		button.titleLabel?.font = font
 	}
+    
+    open func enableButton(enable: Bool) {
+        button.isUserInteractionEnabled = enable
+    }
 
 	@objc func onSegmentButtonPress(_ sender: AnyObject) {
 		let index = tag - kSegmentViewTagOffset

@@ -500,4 +500,8 @@ import UIKit
     open func updateSelectedViewConstraint() {
         self.segmentedScrollView.updateSelectedViewConstraint()
     }
+    
+    open func enableSegmentButtons(enable: Bool) {
+        self.segmentedScrollView.enableSegmentButtons(enable: enable)
+    }
 }
