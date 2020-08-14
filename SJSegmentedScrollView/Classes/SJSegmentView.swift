@@ -346,14 +346,12 @@ class SJSegmentView: UIScrollView {
         super.layoutIfNeeded()
         self.selectedSegmentView?.layer.masksToBounds = true
         self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
-        self.updateSelectedViewConstraint()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.selectedSegmentView?.layer.masksToBounds = true
         self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
-        self.updateSelectedViewConstraint()
     }
     
     func didChangeParentViewFrame(_ frame: CGRect) {
