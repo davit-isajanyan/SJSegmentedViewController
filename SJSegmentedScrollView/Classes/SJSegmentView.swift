@@ -346,12 +346,22 @@ class SJSegmentView: UIScrollView {
         super.layoutIfNeeded()
         self.selectedSegmentView?.layer.masksToBounds = true
         self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
+        if self.segments.count > 0 {
+            let count = CGFloat(self.segments.count)
+            let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
+            self.xPosConstraints?.constant = constant
+        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.selectedSegmentView?.layer.masksToBounds = true
         self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
+        if self.segments.count > 0 {
+            let count = CGFloat(self.segments.count)
+            let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
+            self.xPosConstraints?.constant = constant
+        }
     }
     
     func didChangeParentViewFrame(_ frame: CGRect) {
@@ -376,14 +386,6 @@ class SJSegmentView: UIScrollView {
             }
             
             layoutIfNeeded()
-        }
-    }
-    
-    func updateSelectedViewConstraint() {
-        if self.segments.count > 0 {
-            let count = CGFloat(self.segments.count)
-            let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
-            selectedSegmentView?.frame.origin.x = constant
         }
     }
     
