@@ -89,6 +89,8 @@ class SJSegmentView: UIScrollView {
         }
     }
     
+    var isSelectedSegmentSet = false
+    
     required override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -323,6 +325,7 @@ class SJSegmentView: UIScrollView {
         if let change = change as [NSKeyValueChangeKey : AnyObject]? {
             if let old = change[NSKeyValueChangeKey.oldKey], let new = change[NSKeyValueChangeKey.newKey] {
                 if !(old.isEqual(new)) {
+                    self.isSelectedSegmentSet = true
                     //update selected segment view x position
                     let scrollView = object as? UIScrollView
                     var changeOffset = (scrollView?.contentSize.width)! / contentSize.width
@@ -346,7 +349,7 @@ class SJSegmentView: UIScrollView {
         super.layoutIfNeeded()
         self.selectedSegmentView?.layer.masksToBounds = true
         self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
-        if self.segments.count > 0 {
+        if self.segments.count > 0, !self.isSelectedSegmentSet {
             let count = CGFloat(self.segments.count)
             let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
             selectedSegmentView?.frame.origin.x = constant
@@ -357,7 +360,7 @@ class SJSegmentView: UIScrollView {
         super.layoutSubviews()
         self.selectedSegmentView?.layer.masksToBounds = true
         self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
-        if self.segments.count > 0 {
+        if self.segments.count > 0, !self.isSelectedSegmentSet {
             let count = CGFloat(self.segments.count)
             let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
             selectedSegmentView?.frame.origin.x = constant
