@@ -84,6 +84,11 @@ open class SJSegmentTab: UIView {
         
         button.setTitle(title, for: .normal)
     }
+    
+    open func setImage(_ image: UIImage) {
+        
+        button.setImage(image, for: .normal)
+    }
 
 	open func titleColor(_ color: UIColor) {
 
@@ -104,15 +109,11 @@ open class SJSegmentTab: UIView {
         button.isUserInteractionEnabled = enable
     }
     
-    open func updateTitle(vc: UIViewController) {
-        self.setTitle("")
-        if let view = vc.navigationItem.titleView {
-            insertSubview(view, at: 0)
-            view.removeConstraints(view.constraints)
-            addConstraintsToView(view)
-        } else if let title = vc.title {
-            self.setTitle(title)
+    open func updateTitle(title: String, image: UIImage? = nil) {
+        if let image = image {
+            self.setImage(image)
         }
+        self.setTitle(title)
     }
 
 	@objc func onSegmentButtonPress(_ sender: AnyObject) {
