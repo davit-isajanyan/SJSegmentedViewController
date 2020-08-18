@@ -83,6 +83,7 @@ open class SJSegmentTab: UIView {
     open func setTitle(_ title: String) {
         
         button.setTitle(title, for: .normal)
+        button.imageEdgeInsets.right = 5
     }
     
     open func setImage(_ image: UIImage) {
@@ -91,7 +92,7 @@ open class SJSegmentTab: UIView {
     }
 
 	open func titleColor(_ color: UIColor) {
-
+        button.tintColor = color
 		button.setTitleColor(color, for: .normal)
 	}
     
