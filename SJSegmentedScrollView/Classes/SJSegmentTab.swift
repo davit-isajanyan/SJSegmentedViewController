@@ -111,10 +111,11 @@ open class SJSegmentTab: UIView {
     }
     
     open func updateTitle(title: String, image: UIImage? = nil) {
+        self.setTitle(title)
         if let image = image {
+            self.button.titleEdgeInsets.left = 5
             self.setImage(image)
         }
-        self.setTitle(title)
     }
 
 	@objc func onSegmentButtonPress(_ sender: AnyObject) {
