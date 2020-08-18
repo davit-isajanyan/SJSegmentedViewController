@@ -377,9 +377,7 @@ import UIKit
     
     open func updateSegmentTitles() {
         for (index, vc) in self.segmentControllers.enumerated() {
-            if index <= self.segments.count {
-                self.segments[index].setTitle(vc.title ?? "")
-            }
+            self.segments[index].updateTitle(vc: vc)
         }
     }
     

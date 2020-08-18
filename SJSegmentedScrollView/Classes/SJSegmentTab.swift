@@ -21,6 +21,7 @@
 //  SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import Foundation
+import UIKit
 
 typealias DidSelectSegmentAtIndex = (_ segment: SJSegmentTab?,_ index: Int,_ animated: Bool) -> Void
 
@@ -101,6 +102,17 @@ open class SJSegmentTab: UIView {
     
     open func enableButton(enable: Bool) {
         button.isUserInteractionEnabled = enable
+    }
+    
+    open func updateTitle(vc: UIViewController) {
+        self.setTitle("")
+        if let view = vc.navigationItem.titleView {
+            insertSubview(view, at: 0)
+            view.removeConstraints(view.constraints)
+            addConstraintsToView(view)
+        } else if let title = vc.title {
+            self.setTitle(title)
+        }
     }
 
 	@objc func onSegmentButtonPress(_ sender: AnyObject) {
