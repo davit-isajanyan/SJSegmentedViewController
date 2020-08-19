@@ -73,7 +73,7 @@ class SJSegmentView: UIScrollView {
     var segments = [SJSegmentTab]()
     var segmentContentView: UIView?
     var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
-    var selectedSegmentView: UIView?
+    var selectedSegmentView: RoundedView?
     var xPosConstraints: NSLayoutConstraint?
     var contentViewWidthConstraint: NSLayoutConstraint?
     var selectedSegmentViewWidthConstraint: NSLayoutConstraint?
@@ -232,11 +232,23 @@ class SJSegmentView: UIScrollView {
     
     func createSelectedSegmentView(_ width: CGFloat) {
         
-        let segmentView = UIView()
+        let segmentView = RoundedView()
         segmentView.backgroundColor = selectedSegmentViewColor
         segmentView.translatesAutoresizingMaskIntoConstraints = false
         segmentContentView!.addSubview(segmentView)
         selectedSegmentView = segmentView
+        
+        
+        var constant: CGFloat = 0.0
+        if self.segments.count > 0, !self.isSelectedSegmentSet {
+            let count = CGFloat(self.segments.count)
+            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.frame.width
+            var selectedWidth: CGFloat = 5.0
+            if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
+                selectedWidth = selectedView.frame.width
+            }
+            constant = (((width / count) * 0.5 - selectedWidth * 0.5))
+        }
         
         xPosConstraints = NSLayoutConstraint(item: segmentView,
                                              attribute: .leading,
@@ -244,7 +256,7 @@ class SJSegmentView: UIScrollView {
                                              toItem: segmentContentView!,
                                              attribute: .leading,
                                              multiplier: 1.0,
-                                             constant: 0.0)
+                                             constant: constant)
         segmentContentView!.addConstraint(xPosConstraints!)
         
         let segment = segments.first
@@ -347,24 +359,28 @@ class SJSegmentView: UIScrollView {
     
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        self.selectedSegmentView?.layer.masksToBounds = true
-        self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
         if self.segments.count > 0, !self.isSelectedSegmentSet {
             let count = CGFloat(self.segments.count)
             let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.frame.width
-            let constant = (((width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
+            var selectedWidth: CGFloat = 5.0
+            if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
+                selectedWidth = selectedView.frame.width
+            }
+            let constant = (((width / count) * 0.5 - selectedWidth * 0.5))
             selectedSegmentView?.frame.origin.x = constant
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.selectedSegmentView?.layer.masksToBounds = true
-        self.selectedSegmentView?.layer.cornerRadius = (self.selectedSegmentView?.frame.height ?? 5.0) * 0.5
         if self.segments.count > 0, !self.isSelectedSegmentSet {
             let count = CGFloat(self.segments.count)
             let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.frame.width
-            let constant = (((width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
+            var selectedWidth: CGFloat = 5.0
+            if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
+                selectedWidth = selectedView.frame.width
+            }
+            let constant = (((width / count) * 0.5 - selectedWidth * 0.5))
             selectedSegmentView?.frame.origin.x = constant
         }
     }
