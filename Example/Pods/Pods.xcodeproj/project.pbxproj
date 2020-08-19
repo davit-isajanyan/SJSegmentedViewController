@@ -63,7 +63,7 @@
 		BF3EC4104A7C9509D702B17BD1B48567 /* SJSegmentedScrollView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SJSegmentedScrollView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C847B6BF293B2511091E214700C3F12C /* Pods-SJSegmentedScrollViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SJSegmentedScrollViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D13036BDF1EA17CC8C04350BB9CC520B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD1F2F2A24ED4CA900A98619 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoundedView.swift; path = Example/SJSegmentedScrollViewDemo/ViewControllers/../../../RoundedView.swift; sourceTree = "<group>"; };
+		DD1F2F2A24ED4CA900A98619 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		E1D7DB9D40BD01F225B389D15370B926 /* Pods-SJSegmentedScrollViewDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SJSegmentedScrollViewDemo-dummy.m"; sourceTree = "<group>"; };
 		E5B5322712D02EC60034C4D1A1D2B192 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC62BA8D4EEDCDFFF1AEA3765480414B /* SJContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SJContentView.swift; path = SJSegmentedScrollView/Classes/SJContentView.swift; sourceTree = "<group>"; };
@@ -162,6 +162,7 @@
 				6B1C79664797D2604112C74DFC0BE7E0 /* SJSegmentedScrollView-dummy.m */,
 				A62CA11EEE751578E483C5EA6E94C648 /* SJSegmentedScrollView-prefix.pch */,
 				83C3C7280DE7C4E7705D14406BAD78B0 /* SJSegmentedScrollView-umbrella.h */,
+				DD1F2F2A24ED4CA900A98619 /* RoundedView.swift */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/SJSegmentedScrollView";
@@ -177,7 +178,6 @@
 				6FC89E51D581D024CB216CAD730B64A8 /* SJSegmentView.swift */,
 				09A8A08F3D48D990D2147F29BE7C992E /* SJShadow.swift */,
 				334DBBC57FA135A655045BAAC8C09DFE /* SJUtil.swift */,
-				DD1F2F2A24ED4CA900A98619 /* RoundedView.swift */,
 				D81A905681BC1BF8088DCF8AE04B71D5 /* Pod */,
 				B8DDCCAAB25CD4DBC75013B7D697C874 /* Support Files */,
 			);

@@ -22,7 +22,6 @@
 		64EE32DC1DE840440003EA2A /* ExamplePushViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EE32DB1DE840440003EA2A /* ExamplePushViewController.swift */; };
 		65ED4A0F1D6FF8B900B2EE28 /* SJSegmentedScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65ED4A0E1D6FF8B900B2EE28 /* SJSegmentedScrollView.framework */; };
 		65ED4A151D70043600B2EE28 /* image3.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 65ED4A141D70043600B2EE28 /* image3.JPG */; };
-		DD1F2F2924ED4C7700A98619 /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD1F2F2824ED4C7700A98619 /* RoundedView.swift */; };
 		F2438B1AEF5EEE18592D14BD /* Pods_SJSegmentedScrollViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220B06FF892F6EAAE77A7744 /* Pods_SJSegmentedScrollViewDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		81D33DFEACCD76037A928394 /* Pods-SJSegmentedScrollViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJSegmentedScrollViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SJSegmentedScrollViewDemo/Pods-SJSegmentedScrollViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		BFD50314B40DA82219AAC1C3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C05021CD10857241E6264427 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		DD1F2F2824ED4C7700A98619 /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RoundedView.swift; path = ../../../RoundedView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +132,6 @@
 				64EE32D71DE839340003EA2A /* PresentHeaderViewController.swift */,
 				64EE32D91DE83EB40003EA2A /* ExamplePresentViewController.swift */,
 				64EE32DB1DE840440003EA2A /* ExamplePushViewController.swift */,
-				DD1F2F2824ED4C7700A98619 /* RoundedView.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 				64EE32DA1DE83EB40003EA2A /* ExamplePresentViewController.swift in Sources */,
 				64A421681D3D4543009BFBFE /* AppDelegate.swift in Sources */,
 				64A4216F1D3D4543009BFBFE /* HeaderViewController.swift in Sources */,
-				DD1F2F2924ED4C7700A98619 /* RoundedView.swift in Sources */,
 				64EE32DC1DE840440003EA2A /* ExamplePushViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

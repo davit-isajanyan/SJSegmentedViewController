@@ -73,7 +73,7 @@ class SJSegmentView: UIScrollView {
     var segments = [SJSegmentTab]()
     var segmentContentView: UIView?
     var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
-    var selectedSegmentView: RoundedView?
+    var selectedSegmentView: RoundedSelectedView?
     var xPosConstraints: NSLayoutConstraint?
     var contentViewWidthConstraint: NSLayoutConstraint?
     var selectedSegmentViewWidthConstraint: NSLayoutConstraint?
@@ -232,7 +232,7 @@ class SJSegmentView: UIScrollView {
     
     func createSelectedSegmentView(_ width: CGFloat) {
         
-        let segmentView = RoundedView()
+        let segmentView = RoundedSelectedView()
         segmentView.backgroundColor = selectedSegmentViewColor
         segmentView.translatesAutoresizingMaskIntoConstraints = false
         segmentContentView!.addSubview(segmentView)
