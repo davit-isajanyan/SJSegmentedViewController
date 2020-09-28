@@ -43,7 +43,11 @@ class SJUtil {
 			if navigationController?.isNavigationBarHidden == false {
 				topSpacing = UIApplication.shared.statusBarFrame.height
                 if !(navigationController?.navigationBar.isOpaque)! {
-                    topSpacing += (navigationController?.navigationBar.bounds.height)!
+                    if #available(iOS 11.0, *) {
+                        topSpacing += viewController.view.safeAreaInsets.top
+                    } else {
+                        topSpacing += (navigationController?.navigationBar.bounds.height)!
+                    }
                 }
 			}
 		}
