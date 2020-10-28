@@ -504,4 +504,11 @@ import UIKit
     open func enableSegmentButtons(enable: Bool) {
         self.segmentedScrollView.enableSegmentButtons(enable: enable)
     }
+    
+    open func updateHeaderHeight(height: CGFloat) {
+        self.headerViewHeight = height
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
 }
