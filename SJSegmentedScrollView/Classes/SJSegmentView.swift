@@ -344,7 +344,7 @@ class SJSegmentView: UIScrollView {
                     let value = (scrollView?.contentOffset.x)! / changeOffset
                     
                     if !value.isNaN {
-                        selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + contentSize.width * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5) / changeOffset
+                        selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + bounds.size.width * 0.5 ) / changeOffset - (selectedSegmentView?.frame.width ?? 5.0) * 0.5
                     }
                     
                     //update segment offset x position
