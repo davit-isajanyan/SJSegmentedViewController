@@ -361,7 +361,7 @@ class SJSegmentView: UIScrollView {
         super.layoutIfNeeded()
         if self.segments.count > 0, !self.isSelectedSegmentSet {
             let count = CGFloat(self.segments.count)
-            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.frame.width
+            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.segmentContentView!.frame.width
             var selectedWidth: CGFloat = 5.0
             if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
                 selectedWidth = selectedView.frame.width
@@ -375,7 +375,7 @@ class SJSegmentView: UIScrollView {
         super.layoutSubviews()
         if self.segments.count > 0, !self.isSelectedSegmentSet {
             let count = CGFloat(self.segments.count)
-            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.frame.width
+            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.segmentContentView!.frame.width
             var selectedWidth: CGFloat = 5.0
             if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
                 selectedWidth = selectedView.frame.width
