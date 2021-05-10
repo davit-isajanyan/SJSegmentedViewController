@@ -507,6 +507,7 @@ import UIKit
     
     open func updateHeaderHeight(height: CGFloat, animated: Bool = true) {
         self.headerViewHeight = height
+        self.segmentedScrollView.updateSubviewsFrame(view.bounds)
         if animated {
             UIView.animate(withDuration: 0.2) {
                 self.view.layoutIfNeeded()
