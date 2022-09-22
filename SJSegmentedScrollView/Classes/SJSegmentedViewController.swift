@@ -317,7 +317,7 @@ import UIKit
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = segmentedScrollViewColor
         loadControllers()
 		if #available(iOS 11, *) {
 			segmentedScrollView.contentInsetAdjustmentBehavior = .never
