@@ -46,7 +46,7 @@ open class SJSegmentedScrollView: UIScrollView {
         }
     }
     
-    var trackLineColor: UIColor! = UIColor.red {
+    var trackLineColor: UIColor! = UIColor.clear {
         didSet {
             segmentView?.trackLineColor = trackLineColor
         }
