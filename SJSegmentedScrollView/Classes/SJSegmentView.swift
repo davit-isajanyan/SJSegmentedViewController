@@ -30,6 +30,12 @@ class SJSegmentView: UIScrollView {
         }
     }
     
+    var trackLineColor: UIColor? {
+        didSet {
+            trackLineView?.backgroundColor = trackLineColor
+        }
+    }
+    
     var titleColor: UIColor? {
         didSet {
             for segment in segments {
@@ -67,13 +73,19 @@ class SJSegmentView: UIScrollView {
     }
     
     var font: UIFont?
+    var trackLineViewHeight: CGFloat?
+    
     var selectedSegmentViewHeight: CGFloat?
+    var selectedSegmentViewWidth: CGFloat?
+
     let kSegmentViewTagOffset = 100
     var segmentViewOffsetWidth: CGFloat = 10.0
     var segments = [SJSegmentTab]()
     var segmentContentView: UIView?
     var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
     var selectedSegmentView: RoundedSelectedView?
+    var trackLineView: UIView?
+
     var xPosConstraints: NSLayoutConstraint?
     var contentViewWidthConstraint: NSLayoutConstraint?
     var selectedSegmentViewWidthConstraint: NSLayoutConstraint?
@@ -147,6 +159,7 @@ class SJSegmentView: UIScrollView {
             index += 1
         }
         
+        createTrackLineView(segmentWidth)
         createSelectedSegmentView(segmentWidth)
         
         //Set first button as selected
@@ -230,6 +243,52 @@ class SJSegmentView: UIScrollView {
         segments.append(segmentView)
     }
     
+    func createTrackLineView(_ width: CGFloat) {
+        
+        let segmentView = UIView()
+        segmentView.backgroundColor = trackLineColor
+        segmentView.translatesAutoresizingMaskIntoConstraints = false
+        segmentContentView!.addSubview(segmentView)
+        trackLineView = segmentView
+        
+        let height = trackLineViewHeight ?? selectedSegmentViewHeight!
+        let leadingConstraint = NSLayoutConstraint(item: segmentView,
+                                                   attribute: .leading,
+                                                   relatedBy: .equal,
+                                                   toItem: segmentContentView!,
+                                                   attribute: .leading,
+                                                   multiplier: 1.0,
+                                                   constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: segmentView,
+                                                    attribute: .trailing,
+                                                    relatedBy: .equal,
+                                                    toItem: segmentContentView!,
+                                                    attribute: .trailing,
+                                                    multiplier: 1.0,
+                                                    constant: 0)
+        
+        let bottomConstraint = NSLayoutConstraint(item: segmentView,
+                                                  attribute: .bottom,
+                                                  relatedBy: .equal,
+                                                  toItem: segmentContentView!,
+                                                  attribute: .bottom,
+                                                  multiplier: 1.0,
+                                                  constant: -max((selectedSegmentViewHeight! - height) * 0.5 , 0))
+        
+        let heightConstraint = NSLayoutConstraint(item: segmentView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .notAnAttribute,
+                                                  multiplier: 1.0,
+                                                  constant: height)
+        
+        segmentContentView!.addConstraint(leadingConstraint)
+        segmentContentView!.addConstraint(trailingConstraint)
+        segmentContentView!.addConstraint(bottomConstraint)
+        segmentContentView!.addConstraint(heightConstraint)
+    }
+    
     func createSelectedSegmentView(_ width: CGFloat) {
         
         let segmentView = RoundedSelectedView()
@@ -238,31 +297,19 @@ class SJSegmentView: UIScrollView {
         segmentContentView!.addSubview(segmentView)
         selectedSegmentView = segmentView
         
-        
-        var constant: CGFloat = 0.0
-        if self.segments.count > 0, !self.isSelectedSegmentSet {
-            let count = CGFloat(self.segments.count)
-            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.frame.width
-            var selectedWidth: CGFloat = 5.0
-            if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
-                selectedWidth = selectedView.frame.width
-            }
-            constant = (((width / count) * 0.5 - selectedWidth * 0.5))
-        }
-        
         xPosConstraints = NSLayoutConstraint(item: segmentView,
                                              attribute: .leading,
                                              relatedBy: .equal,
                                              toItem: segmentContentView!,
                                              attribute: .leading,
                                              multiplier: 1.0,
-                                             constant: constant)
+                                             constant: 0)
         segmentContentView!.addConstraint(xPosConstraints!)
         
         let segment = segments.first
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:[view(width)]",
                                                                                    options: [],
-                                                                                   metrics: ["width": selectedSegmentViewHeight!],
+                                                                                   metrics: ["width": selectedSegmentViewWidth ?? selectedSegmentViewHeight!],
                                                                                    views: ["view": segmentView,
                                                                                     "segment": segment!])
         segmentContentView!.addConstraints(horizontalConstraints)
@@ -359,30 +406,10 @@ class SJSegmentView: UIScrollView {
     
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
-        if self.segments.count > 0, !self.isSelectedSegmentSet {
-            let count = CGFloat(self.segments.count)
-            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.segmentContentView!.frame.width
-            var selectedWidth: CGFloat = 5.0
-            if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
-                selectedWidth = selectedView.frame.width
-            }
-            let constant = (((width / count) * 0.5 - selectedWidth * 0.5))
-            selectedSegmentView?.frame.origin.x = constant
-        }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        if self.segments.count > 0, !self.isSelectedSegmentSet {
-            let count = CGFloat(self.segments.count)
-            let width = self.frame.width == 0 ? UIScreen.main.bounds.width : self.segmentContentView!.frame.width
-            var selectedWidth: CGFloat = 5.0
-            if let selectedView = selectedSegmentView, selectedView.frame.width != 0 {
-                selectedWidth = selectedView.frame.width
-            }
-            let constant = (((width / count) * 0.5 - selectedWidth * 0.5))
-            selectedSegmentView?.frame.origin.x = constant
-        }
     }
     
     func didChangeParentViewFrame(_ frame: CGRect) {
@@ -400,10 +427,9 @@ class SJSegmentView: UIScrollView {
         
         if !value.isNaN {
             if UIView.userInterfaceLayoutDirection(for: self.semanticContentAttribute) == .rightToLeft {
-                let newIndex = contentView?.pageIndex ?? 0
-                xPosConstraints!.constant = CGFloat(newIndex) * segmentWidth
+                xPosConstraints!.constant = 0 //CGFloat(newIndex) * segmentWidth
             } else {
-                xPosConstraints!.constant = (selectedSegmentView?.frame.origin.x)!
+                xPosConstraints!.constant = 0 //(selectedSegmentView?.frame.origin.x)!
             }
             
             layoutIfNeeded()
@@ -437,7 +463,7 @@ public class RoundedSelectedView: UIView {
     }
     
     private func toRound() {
-        self.layer.cornerRadius = self.frame.size.height * 0.5
+        self.layer.cornerRadius = min(self.frame.size.height, self.frame.size.width) * 0.5
         self.layer.masksToBounds = true
     }
 }

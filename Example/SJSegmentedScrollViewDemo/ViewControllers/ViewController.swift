@@ -44,11 +44,14 @@ class ViewController: SJSegmentedViewController {
 			                           thirdViewController!,
 			                           fourthViewController]
 			headerViewHeight = 200
-			selectedSegmentViewHeight = 5.0
+			selectedSegmentViewHeight = 2
+            trackLineViewHeight = 1
+            selectedSegmentViewWidth =  0.3 * UIScreen.main.bounds.width / 4
 			headerViewOffsetHeight = 31.0
 			segmentTitleColor = .gray
 			selectedSegmentViewColor = .red
-			segmentShadow = SJShadow.light()
+            trackLineColor = .green
+//			segmentShadow = SJShadow.light()
 			showsHorizontalScrollIndicator = false
 			showsVerticalScrollIndicator = false
 			segmentBounces = false

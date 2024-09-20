@@ -109,6 +109,19 @@ import UIKit
     }
     
     /**
+     *  Set color for selected segment.
+     *
+     *  By default the color is light gray.
+     *
+     *  segmentedViewController.selectedSegmentViewColor = UIColor.redColor()
+     */
+    open var trackLineColor = UIColor.clear {
+        didSet {
+            segmentedScrollView.trackLineColor = trackLineColor
+        }
+    }
+    
+    /**
      *  Set height for selected segment view.
      *
      *  By default the height is 5.0
@@ -118,6 +131,18 @@ import UIKit
     open var selectedSegmentViewHeight: CGFloat = 5.0 {
         didSet {
             segmentedScrollView.selectedSegmentViewHeight = selectedSegmentViewHeight
+        }
+    }
+    
+    open var selectedSegmentViewWidth: CGFloat = 5.0 {
+        didSet {
+            segmentedScrollView.selectedSegmentViewWidth = selectedSegmentViewWidth
+        }
+    }
+    
+    open var trackLineViewHeight: CGFloat = 5.0 {
+        didSet {
+            segmentedScrollView.trackLineViewHeight = trackLineViewHeight
         }
     }
     

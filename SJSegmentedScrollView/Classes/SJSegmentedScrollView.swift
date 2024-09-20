@@ -46,7 +46,17 @@ open class SJSegmentedScrollView: UIScrollView {
         }
     }
     
+    var trackLineColor: UIColor! = UIColor.red {
+        didSet {
+            segmentView?.trackLineColor = trackLineColor
+        }
+    }
+    
+    
+    
     var selectedSegmentViewHeight: CGFloat! = 0
+    var selectedSegmentViewWidth: CGFloat?
+    var trackLineViewHeight: CGFloat?
     
     var segmentBounces = false
     
@@ -262,7 +272,10 @@ open class SJSegmentedScrollView: UIScrollView {
             segmentView = SJSegmentView(frame: CGRect.zero)
 			segmentView?.controllers					= controllers
             segmentView?.selectedSegmentViewColor		= selectedSegmentViewColor
+            segmentView?.trackLineColor                 = trackLineColor
+            segmentView?.trackLineViewHeight            = trackLineViewHeight
             segmentView?.selectedSegmentViewHeight		= selectedSegmentViewHeight!
+            segmentView?.selectedSegmentViewWidth       = selectedSegmentViewWidth
             segmentView?.titleColor						= segmentTitleColor
             segmentView?.selectedTitleColor             = segmentSelectedTitleColor
             segmentView?.segmentBackgroundColor			= segmentBackgroundColor
