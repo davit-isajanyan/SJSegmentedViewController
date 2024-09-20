@@ -393,7 +393,6 @@ class SJSegmentView: UIScrollView {
                     if !value.isNaN {
                         selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + bounds.size.width * 0.5 ) / changeOffset - (selectedSegmentView?.frame.width ?? 5.0) * 0.5
                     }
-                    
                     //update segment offset x position
                     let segmentScrollWidth = contentSize.width - bounds.width
                     let contentScrollWidth = scrollView!.contentSize.width - scrollView!.bounds.width
@@ -424,7 +423,6 @@ class SJSegmentView: UIScrollView {
         
         let changeOffset = (contentView?.contentSize.width)! / contentSize.width
         let value = (contentView?.contentOffset.x)! / changeOffset
-        
         if !value.isNaN {
             if UIView.userInterfaceLayoutDirection(for: self.semanticContentAttribute) == .rightToLeft {
                 xPosConstraints!.constant = 0 //CGFloat(newIndex) * segmentWidth
@@ -436,12 +434,13 @@ class SJSegmentView: UIScrollView {
         }
     }
     
-    func updateSelectedViewConstraint() {
-//        if self.segments.count > 0 {
-//            let count = CGFloat(self.segments.count)
-//            let constant = (((self.frame.width / count) * 0.5 - (selectedSegmentView?.frame.width ?? 5.0) * 0.5))
-//            selectedSegmentView?.frame.origin.x = constant
-//        }
+    func updateSelectedViewConstraint(scrollView: UIScrollView?) {
+        let changeOffset = (scrollView?.contentSize.width)! / contentSize.width
+        let value = (scrollView?.contentOffset.x)! / changeOffset
+        
+        if !value.isNaN {
+            selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + bounds.size.width * 0.5 ) / changeOffset - (selectedSegmentView?.frame.width ?? 5.0) * 0.5
+        }
     }
     
     func enableSegmentButton(enable: Bool) {
