@@ -110,8 +110,8 @@ open class SJSegmentTab: UIView {
         button.isUserInteractionEnabled = enable
     }
     
-    open func updateTitle(title: String, image: UIImage? = nil, leftInsets: CGFloat = 5) {
-        self.setTitle(title)
+    open func updateTitle(title: String, image: UIImage? = nil, leftInsets: CGFloat = 5, rightInsets: CGFloat = 5) {
+        self.setTitle(title, rightInsets: rightInsets)
         if let image = image {
             self.button.titleEdgeInsets.left = leftInsets
             self.setImage(image)
