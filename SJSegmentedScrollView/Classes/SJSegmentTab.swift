@@ -80,10 +80,10 @@ open class SJSegmentTab: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
     
-    open func setTitle(_ title: String) {
+    open func setTitle(_ title: String, rightInsets: CGFloat = 5) {
         
         button.setTitle(title, for: .normal)
-        button.imageEdgeInsets.right = 5
+        button.imageEdgeInsets.right = rightInsets
     }
     
     open func setImage(_ image: UIImage) {
@@ -110,12 +110,20 @@ open class SJSegmentTab: UIView {
         button.isUserInteractionEnabled = enable
     }
     
-    open func updateTitle(title: String, image: UIImage? = nil) {
+    open func updateTitle(title: String, image: UIImage? = nil, leftInsets: CGFloat = 5) {
         self.setTitle(title)
         if let image = image {
-            self.button.titleEdgeInsets.left = 5
+            self.button.titleEdgeInsets.left = leftInsets
             self.setImage(image)
         }
+    }
+    
+    open func setTitleEdgeInsets(_ inset: UIEdgeInsets) {
+        self.button.titleEdgeInsets = inset
+    }
+    
+    open func setImageEdgeInsets(_ inset: UIEdgeInsets) {
+        self.button.titleEdgeInsets = inset
     }
 
 	@objc func onSegmentButtonPress(_ sender: AnyObject) {
