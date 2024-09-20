@@ -351,6 +351,11 @@ import UIKit
 		}
     }
     
+    override open func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.updateSelectedViewConstraint()
+    }
+    
     /**
      * Update view as per the current layout
      */
