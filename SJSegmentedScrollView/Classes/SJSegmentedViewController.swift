@@ -353,7 +353,7 @@ import UIKit
     
     override open func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.updateSelectedViewConstraint()
+//        self.updateSelectedViewConstraint()
     }
     
     /**
@@ -367,6 +367,8 @@ import UIKit
         segmentedScrollView.bottomSpacing = SJUtil.getBottomSpacing(self)
         segmentScrollViewTopConstraint?.constant = topSpacing
         segmentedScrollView.updateSubviewsFrame(view.bounds)
+        self.updateSelectedViewConstraint()
+
     }
 
 	/**

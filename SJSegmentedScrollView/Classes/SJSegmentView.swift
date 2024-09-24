@@ -434,11 +434,15 @@ class SJSegmentView: UIScrollView {
         }
     }
     
-    func updateSelectedViewConstraint(scrollView: UIScrollView?) {
+    func updateSelectedViewConstraint(_ scrollView: UIScrollView?) {
         let changeOffset = (scrollView?.contentSize.width)! / contentSize.width
         let value = (scrollView?.contentOffset.x)! / changeOffset
         
-        if !value.isNaN {
+        if value.isNaN {
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05, execute: {
+//                self.updateSelectedViewConstraint(scrollView)
+//            })
+        } else {
             selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + bounds.size.width * 0.5 ) / changeOffset - (selectedSegmentView?.frame.width ?? 5.0) * 0.5
         }
     }
