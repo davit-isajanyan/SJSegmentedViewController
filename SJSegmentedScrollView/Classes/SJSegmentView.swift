@@ -436,13 +436,14 @@ class SJSegmentView: UIScrollView {
     }
     
     func setupSelectedViewConstraint(_ scrollView: UIScrollView?) {
-        guard !canUpdateLineUi,
+        guard canUpdateLineUi,
               let scrollView = scrollView,
-              let selectedSegmentView = self.selectedSegmentView else { return }
+              let selectedSegmentView = self.selectedSegmentView,
+              contentSize.width > 0 else { return }
         
         let contentOffsetX = scrollView.contentOffset.x
         let changeOffset = scrollView.contentSize.width / contentSize.width
-        let value = (scrollView.contentOffset.x) / changeOffset
+        let value = contentOffsetX / changeOffset
         
         if !value.isNaN {
             canUpdateLineUi = false
