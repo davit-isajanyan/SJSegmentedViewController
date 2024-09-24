@@ -428,7 +428,7 @@ open class SJSegmentedScrollView: UIScrollView {
     }
     
     func updateSelectedViewConstraint() {
-        self.segmentView?.updateSelectedViewConstraint(self.contentView)
+        self.segmentView?.setupSelectedViewConstraint(self.contentView)
     }
     
     func enableSegmentButtons(enable: Bool) {

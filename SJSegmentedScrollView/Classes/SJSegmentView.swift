@@ -91,6 +91,7 @@ class SJSegmentView: UIScrollView {
     var selectedSegmentViewWidthConstraint: NSLayoutConstraint?
     var contentSubViewWidthConstraints = [NSLayoutConstraint]()
 	var controllers: [UIViewController]?
+    var canUpdateLineUi: Bool = true
     
     var contentView: SJContentView? {
         didSet {
@@ -434,16 +435,18 @@ class SJSegmentView: UIScrollView {
         }
     }
     
-    func updateSelectedViewConstraint(_ scrollView: UIScrollView?) {
-        let changeOffset = (scrollView?.contentSize.width)! / contentSize.width
-        let value = (scrollView?.contentOffset.x)! / changeOffset
+    func setupSelectedViewConstraint(_ scrollView: UIScrollView?) {
+        guard !canUpdateLineUi,
+              let scrollView = scrollView,
+              let selectedSegmentView = self.selectedSegmentView else { return }
         
-        if value.isNaN {
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05, execute: {
-//                self.updateSelectedViewConstraint(scrollView)
-//            })
-        } else {
-            selectedSegmentView?.frame.origin.x = ((scrollView?.contentOffset.x)! + bounds.size.width * 0.5 ) / changeOffset - (selectedSegmentView?.frame.width ?? 5.0) * 0.5
+        let contentOffsetX = scrollView.contentOffset.x
+        let changeOffset = scrollView.contentSize.width / contentSize.width
+        let value = (scrollView.contentOffset.x) / changeOffset
+        
+        if !value.isNaN {
+            canUpdateLineUi = false
+            selectedSegmentView.frame.origin.x = (contentOffsetX + bounds.size.width * 0.5) / changeOffset - selectedSegmentView.frame.width * 0.5
         }
     }
     
