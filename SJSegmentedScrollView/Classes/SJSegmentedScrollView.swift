@@ -428,6 +428,10 @@ open class SJSegmentedScrollView: UIScrollView {
     }
     
     func updateSelectedViewConstraint() {
+        if let segmentView, let selectedSegmentView = segmentView.selectedSegmentView, selectedSegmentView.frame.origin.x == 0 {
+            self.segmentView?.canUpdateLineUi = true
+        }
+        
         self.segmentView?.setupSelectedViewConstraint(self.contentView)
     }
     
