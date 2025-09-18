@@ -385,7 +385,6 @@ class SJSegmentView: UIScrollView {
         if let change = change as [NSKeyValueChangeKey : AnyObject]? {
             if let old = change[NSKeyValueChangeKey.oldKey], let new = change[NSKeyValueChangeKey.newKey] {
                 if !(old.isEqual(new)) {
-                    self.isSelectedSegmentSet = true
                     //update selected segment view x position
                     let scrollView = object as? UIScrollView
                     var changeOffset = (scrollView?.contentSize.width)! / contentSize.width
@@ -410,6 +409,23 @@ class SJSegmentView: UIScrollView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        if !isSelectedSegmentSet,
+            let firstSegment = segments.first,
+            let selectedView = selectedSegmentView {
+
+             segmentContentView?.layoutIfNeeded()
+             firstSegment.layoutIfNeeded()
+             selectedView.layoutIfNeeded()
+
+             let firstCenterX = firstSegment.frame.origin.x + firstSegment.frame.size.width * 0.5
+             let selectedOriginX = firstCenterX - selectedView.frame.size.width * 0.5
+
+             xPosConstraints?.constant = selectedOriginX
+
+             isSelectedSegmentSet = true
+
+             layoutIfNeeded()
+         }
     }
     
     func didChangeParentViewFrame(_ frame: CGRect) {
