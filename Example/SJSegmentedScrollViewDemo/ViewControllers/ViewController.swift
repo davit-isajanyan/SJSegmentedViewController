@@ -52,6 +52,7 @@ class ViewController: SJSegmentedViewController {
 			segmentTitleColor = .gray
 			selectedSegmentViewColor = .red
             trackLineColor = .green
+            segmentBadgeBackgroundColor = .yellow
 //			segmentShadow = SJShadow.light()
 			showsHorizontalScrollIndicator = false
 			showsVerticalScrollIndicator = false

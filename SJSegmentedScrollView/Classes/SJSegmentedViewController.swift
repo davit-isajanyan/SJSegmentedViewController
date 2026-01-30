@@ -147,6 +147,19 @@ import UIKit
     }
     
     /**
+     *  Set color for segment badge.
+     *
+     *  By default the color is red.
+     *
+     *  segmentedViewController.bagdgeView.backgroundColor  = UIColor.redColor()
+     */
+    open var segmentBadgeBackgroundColor = UIColor.red {
+        didSet {
+            segmentedScrollView.segmentBadgeBackgroundColor = segmentBadgeBackgroundColor
+        }
+    }
+    
+    /**
      *  Set color for segment title.
      *
      *  By default the color is black.
@@ -393,6 +406,7 @@ import UIKit
     open func setDefaultValuesToSegmentedScrollView() {
         
         segmentedScrollView.selectedSegmentViewColor    = selectedSegmentViewColor
+        segmentedScrollView.segmentBadgeBackgroundColor = segmentBadgeBackgroundColor
         segmentedScrollView.selectedSegmentViewHeight   = selectedSegmentViewHeight
         segmentedScrollView.segmentTitleColor           = segmentTitleColor
         segmentedScrollView.segmentSelectedTitleColor   = segmentSelectedTitleColor

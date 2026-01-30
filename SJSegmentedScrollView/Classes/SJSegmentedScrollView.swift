@@ -78,6 +78,12 @@ open class SJSegmentedScrollView: UIScrollView {
         }
     }
     
+    var segmentBadgeBackgroundColor: UIColor? {
+        didSet {
+            segmentView?.segmentBadgeBackgroundColor = segmentBadgeBackgroundColor
+        }
+    }
+    
     var segmentShadow: SJShadow? {
         didSet {
             segmentView?.shadow = segmentShadow
@@ -279,6 +285,7 @@ open class SJSegmentedScrollView: UIScrollView {
             segmentView?.titleColor						= segmentTitleColor
             segmentView?.selectedTitleColor             = segmentSelectedTitleColor
             segmentView?.segmentBackgroundColor			= segmentBackgroundColor
+            segmentView?.segmentBadgeBackgroundColor    = segmentBadgeBackgroundColor
             segmentView?.font							= segmentTitleFont!
             segmentView?.shadow							= segmentShadow
             segmentView?.font							= segmentTitleFont!
