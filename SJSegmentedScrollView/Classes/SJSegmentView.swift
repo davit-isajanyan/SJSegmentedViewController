@@ -52,6 +52,14 @@ class SJSegmentView: UIScrollView {
         }
     }
     
+    var badgeBackgroundColor: UIColor? {
+        didSet {
+            for segment in segments {
+                segment.badgeView.backgroundColor = badgeBackgroundColor
+            }
+        }
+    }
+    
     var segmentBackgroundColor: UIColor? {
         didSet {
             for segment in segments {
@@ -340,6 +348,7 @@ class SJSegmentView: UIScrollView {
 			segmentTab?.titleColor(titleColor!)
             segmentTab?.selectedTitleColor(selectedTitleColor!)
 			segmentTab?.titleFont(font!)
+            segmentTab?.badgeView.isHidden = !controller.canShowBadge
 		}
 
 		segmentTab?.didSelectSegmentAtIndex = didSelectSegmentAtIndex

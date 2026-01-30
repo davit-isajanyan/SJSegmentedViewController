@@ -29,6 +29,7 @@ open class SJSegmentTab: UIView {
 
 	let kSegmentViewTagOffset = 100
 	let button = UIButton(type: .custom)
+    let badgeView = UIView()
 
 	var didSelectSegmentAtIndex: DidSelectSegmentAtIndex?
 	var isSelected = false {
@@ -37,7 +38,7 @@ open class SJSegmentTab: UIView {
 		}
 	}
 
-	convenience init(title: String) {
+    convenience init(title: String) {
 		self.init(frame: CGRect.zero)
         setTitle(title)
 	}
@@ -59,7 +60,20 @@ open class SJSegmentTab: UIView {
 		                 for: .touchUpInside)
 		addSubview(button)
 		addConstraintsToView(button)
+        
+        badgeView.bounds = CGRect(x: 0, y: 0, width: 4, height: 4)
+        badgeView.layer.cornerRadius = 2
+        badgeView.layer.masksToBounds = true
+        badgeView.backgroundColor = UIColor.red
+        badgeView.isHidden = false
+        addSubview(badgeView)
+        
+        setupConstraints()
 	}
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
 	func addConstraintsToView(_ view: UIView) {
 
@@ -75,10 +89,17 @@ open class SJSegmentTab: UIView {
 		addConstraints(verticalConstraints)
 		addConstraints(horizontalConstraints)
 	}
+    
+    private func setupConstraints() {
+        badgeView.translatesAutoresizingMaskIntoConstraints = false
 
-	required public init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+        NSLayoutConstraint.activate([
+            badgeView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            badgeView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            badgeView.widthAnchor.constraint(equalToConstant: 4),
+            badgeView.heightAnchor.constraint(equalToConstant: 4)
+        ])
+    }
     
     open func setTitle(_ title: String, rightInsets: CGFloat = 5) {
         
@@ -107,7 +128,10 @@ open class SJSegmentTab: UIView {
 	}
     
     open func enableButton(enable: Bool) {
-        button.isUserInteractionEnabled = enable
+    }
+    
+    open func updateBadgeView(_ isHidden: Bool) {
+        badgeView.isHidden = isHidden
     }
     
     open func updateTitle(title: String, image: UIImage? = nil, leftInsets: CGFloat = 5, rightInsets: CGFloat = 5) {

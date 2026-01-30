@@ -547,3 +547,20 @@ import UIKit
         }
     }
 }
+
+extension UIViewController {
+    private struct AssociatedKeys {
+        static var canShowBadgeId = UnsafeRawPointer(bitPattern: "canShowBadge".hashValue)
+    }
+    
+    @objc open var canShowBadge: Bool {
+        get {
+            guard let key = AssociatedKeys.canShowBadgeId else { return false }
+            return objc_getAssociatedObject(self, key) as? Bool ?? false
+        }
+        set {
+            guard let key = AssociatedKeys.canShowBadgeId else { return }
+            objc_setAssociatedObject(self, key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+}

@@ -26,7 +26,8 @@ class ViewController: SJSegmentedViewController {
 			let secondViewController = storyboard
 				.instantiateViewController(withIdentifier: "SecondViewController")
 			secondViewController.title = "Second"
-
+            secondViewController.canShowBadge = true
+            
 			let thirdViewController = storyboard
 				.instantiateViewController(withIdentifier: "ThirdViewController") as? ThirdViewController
 			thirdViewController?.title = "Third"

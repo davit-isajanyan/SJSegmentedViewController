@@ -25,6 +25,7 @@ class ExamplePresentViewController: UIViewController {
 			let secondViewController = storyboard
 				.instantiateViewController(withIdentifier: "SecondViewController")
 			secondViewController.title = "Second"
+            secondViewController.canShowBadge = true
 
 			let segmentController = SJSegmentedViewController()
 			segmentController.headerViewController = headerViewController
@@ -34,8 +35,16 @@ class ExamplePresentViewController: UIViewController {
 			segmentController.headerViewOffsetHeight = 31.0
             segmentController.segmentTitleColor = .lightGray
             segmentController.segmentSelectedTitleColor = .black
+            segmentController.delegate = self
             
             present(segmentController, animated: true, completion: nil)
 		}
 	}
+}
+
+extension ExamplePresentViewController: SJSegmentedViewControllerDelegate {
+
+    func didMoveToPage(_ controller: UIViewController, segment: SJSegmentTab?, index: Int) {
+        segment?.updateBadgeView(true)
+    }
 }
