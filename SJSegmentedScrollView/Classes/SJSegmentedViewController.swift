@@ -49,6 +49,7 @@ import UIKit
      - returns: observe view
      */
     @objc optional func viewForSegmentControllerToObserveContentOffsetChange() -> UIView
+    @objc optional func viewForSegmentControllerToObserveContentOffsetChanges() -> [UIView]
 }
 
 /**
@@ -514,6 +515,12 @@ import UIKit
 
             segmentedScrollView.addObserverFor(observeView!)
             index += 1
+            
+            if let views = delegate?.viewForSegmentControllerToObserveContentOffsetChanges?() {
+                for view in views {
+                    segmentedScrollView.addObserverFor(view)
+                }
+            }
         }
         
         segmentedScrollView.segmentView?.contentView = segmentedScrollView.contentView
